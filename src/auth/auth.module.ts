@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersSchema } from 'src/users/schemas/users.schema';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from './strategies/jwt.strategy'; // Add this import
+import { JwtStrategy } from './strategies/jwt.strategy'; 
 
 @Module({
   imports: [

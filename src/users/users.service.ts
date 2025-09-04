@@ -6,7 +6,6 @@ import { User } from './models/users.model';
 import { AuthService } from 'src/auth/auth.service';
 import { SignupDto } from './dto/signup.dto';
 import { SigninDto } from './dto/signin.dto';
-import { match } from 'assert';
 
 @Injectable()
 export class UsersService {
