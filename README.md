@@ -21,54 +21,111 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+# NestJS MongoDB Authentication API
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+A REST API built with NestJS framework featuring user authentication using JWT tokens and MongoDB for data persistence.
 
-## Project setup
+## Features
 
-```bash
-$ npm install
+- User registration and authentication
+- JWT-based authorization
+- Password hashing with bcrypt
+- MongoDB integration with Mongoose
+- Input validation with class-validator
+- Protected routes with Passport guards
+
+## Project Structure
+
+```
+src/
+├── auth/                 # Authentication module
+│   ├── auth.service.ts   # JWT token management
+│   ├── strategies/       # Passport strategies
+│   └── models/          # JWT payload interfaces
+├── users/               # Users module
+│   ├── users.service.ts  # User business logic
+│   ├── users.controller.ts # REST endpoints
+│   ├── dto/             # Data transfer objects
+│   ├── models/          # User interface
+│   └── schemas/         # Mongoose schemas
+└── main.ts              # Application entry point
 ```
 
-## Compile and run the project
+## API Endpoints
 
-```bash
-# development
-$ npm run start
+### Authentication
+- `POST /users/signup` - Register a new user
+- `POST /users/signin` - Login user and receive JWT token
+- `GET /users` - Get all users (protected route)
 
-# watch mode
-$ npm run start:dev
+## Environment Variables
 
-# production mode
-$ npm run start:prod
+Create a `.env` file in the root directory:
+
+```env
+MONGO_URI=mongodb://localhost:27017/your-database
+JWT_SECRET=your-jwt-secret
+JWT_EXPIRATION=1d
+PORT=3001
 ```
 
-## Run tests
+## Installation
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Development
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Start in development mode
+npm run start:dev
+
+# Start in watch mode
+npm run start:debug
+
+# Build for production
+npm run build
+
+# Start production server
+npm run start:prod
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Testing
+
+```bash
+# Run unit tests
+npm run test
+
+# Run e2e tests
+npm run test:e2e
+
+# Run tests with coverage
+npm run test:cov
+```
+
+## Database Setup
+
+Make sure MongoDB is running locally or update the `MONGO_URI` in your environment variables to point to your MongoDB instance.
+
+## Authentication Flow
+
+1. User registers via `/users/signup` endpoint
+2. User logs in via `/users/signin` endpoint and receives a JWT token
+3. Include the JWT token in the Authorization header for protected routes:
+   ```
+   Authorization: Bearer <your-jwt-token>
+   ```
+
+## Technologies Used
+
+- NestJS - Node.js framework
+- MongoDB - NoSQL database
+- Mongoose - MongoDB object modeling
+- JWT - JSON Web Tokens for authentication
+- bcrypt - Password hashing
+- Passport - Authentication middleware
+- class-validator - Input validation
 
 ## Resources
 
@@ -95,4 +152,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the MIT License.
