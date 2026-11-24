@@ -119,7 +119,7 @@ docs/                           # openapi.json, Postman collection, screenshots
 npm test          # only the generated AppController spec (1 test)
 ```
 
-`test/app.e2e-spec.ts` is the unchanged Nest template and needs a running MongoDB. `npm run lint` reports 34 errors and 2 warnings in the current code.
+`test/app.e2e-spec.ts` is the unchanged Nest template and needs a running MongoDB. `npm run lint` reports 35 errors and 2 warnings, almost all Prettier formatting in `users.controller.ts`.
 
 ## Known limitations
 
