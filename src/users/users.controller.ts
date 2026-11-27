@@ -4,8 +4,10 @@ import { SignupDto } from './dto/signup.dto';
 import { User } from './models/users.model'
 import { SigninDto } from './dto/signin.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
  constructor(private readonly usersService: UsersService) {}
@@ -26,6 +28,7 @@ public async signin(
 }
 @Get()
 @UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth()
 @HttpCode(HttpStatus.OK)
 public async findAll(): Promise<User[]> {
     return this.usersService.findAll()
